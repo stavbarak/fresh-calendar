@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import TaskIndication from './TaskIndication';
 
 class MobileDailyTasks extends Component {
-    renderTasksList(todayFormatted, todayFormattedForDisplay, todaysTasks) {
+    renderTasksList(todayFormattedForDisplay, todaysTasks) {
         return _.map(todaysTasks, item => {
             return (
                 <li key={item.id} className="list-group-item">
@@ -21,7 +21,7 @@ class MobileDailyTasks extends Component {
                 <ul className="mobileDailyTasks">
                     <Button onClick={onClickNewTask} className="btn btn-success create"> New Task </Button>
                    {tasksByDate && tasksByDate[todayFormatted] 
-                    ? this.renderTasksList(todayFormatted, todayFormattedForDisplay, tasksByDate[todayFormatted]) 
+                    ? this.renderTasksList(todayFormattedForDisplay, tasksByDate[todayFormatted]) 
                     : ""}
                 </ul>
             </div>

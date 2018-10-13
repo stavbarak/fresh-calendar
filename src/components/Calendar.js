@@ -78,8 +78,15 @@ class Calendar extends Component {
 
       return (
         <div className="calendar">
-          <Header currentMonth={currentMonth} prevMonth={this.prevMonth} nextMonth={this.nextMonth} />
-          <DayNames currentMonth={currentMonth} dayNameFormat={dayNameFormat} />
+          <Header 
+            currentMonth={currentMonth} 
+            prevMonth={this.prevMonth} 
+            nextMonth={this.nextMonth} 
+          />
+          <DayNames 
+            currentMonth={currentMonth} 
+            dayNameFormat={dayNameFormat} 
+          />
           <Cells 
             tasksByDate={this.getTasksByDate(tasks)} 
             onDateClick={this.onDateClick} 
