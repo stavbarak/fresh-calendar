@@ -1,0 +1,418 @@
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+.taskLink, .taskLink:focus, .taskLink:hover {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.newTaskLink, .newTaskLink:focus, .newTaskLink:hover {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.taskView {
+  box-shadow: 10px 10px 15px -3px rgba(212,212,212,1);
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+}
+
+.taskViewTop {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+
+.icon {
+  font-family: 'Material Icons', serif;
+  font-style: normal;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  cursor: pointer;
+}
+
+body {
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgb(32, 32, 32);
+    background: #eceeef;
+    position: relative;
+}
+
+input[type=date].form-control, input[type=time].form-control, input[type=datetime-local].form-control, input[type=month].form-control{
+  line-height: initial;
+  width: 177px;
+}
+
+.modal-body {
+  background-color: #f9f9f9;
+}
+
+.newTaskHeader{
+  display: flex;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.row-middle {
+  align-items: center;
+}
+
+.col {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+}
+
+.col-start {
+  justify-content: flex-start;
+  text-align: right;
+}
+
+.col-center {
+  justify-content: center;
+  text-align: center;
+}
+
+.col-end {
+  justify-content: flex-end;
+  text-align: left;
+}
+
+.btn.create {
+  background-color: #5bc0de;
+  border: none;
+}
+
+.btn.create:hover {
+  background-color: #18a1ca;
+
+}
+
+.calendar {
+  display: block;
+  position: relative;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #eee;
+  box-shadow: 10px 10px 15px -3px rgba(212,212,212,1);
+}
+
+.header {
+  margin: 30px 0 50px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.calendar .days {
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #000;
+  font-size: 70%;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.calendar .body .cell {
+  position: relative;
+  min-height: 9em;
+  border-right: 1px solid #eee;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cell:hover {
+  background-color: #c1f0ff;
+  transition: 0.3s;
+}
+
+
+.calendar .body .selected {
+  background-color: #c1f0ff;
+}
+
+.today{
+  border-left: 5px solid #5bc0de;
+}
+
+.calendar .body .row {
+  border-bottom: 1px solid #eee;
+}
+
+.calendar .body .row:last-child {
+  border-bottom: none;
+}
+
+.calendar .body .cell:last-child {
+  border-right: none;
+}
+
+.calendar .body .cell .number {
+  display: flex;
+  padding: 7px;
+  font-size: 82.5%;
+  line-height: 1;
+  top: .75em;
+  right: .75em;
+  font-weight: 700;
+}
+
+.calendar .body .disabled {
+  color: rgb(133, 131, 131);
+  pointer-events: none;
+}
+
+.calendar .body .cell .bg {
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  opacity: 0;
+  font-size: 8em;
+  position: absolute;
+  top: -.2em;
+  right: -.05em;
+  letter-spacing: -.07em;
+}
+
+
+.calendar .body .col {
+  flex-grow: 0;
+  flex-basis: calc(100%/7);
+  width: calc(100%/7);
+}
+
+.newTaskFooter, .inputBox{
+  display: flex;
+  justify-content: space-between;
+}
+
+.newTaskFooter {
+  margin: 10px 0;
+}
+
+.taskForm {
+  width: 90%;
+  height: 90%;
+  margin: 20px auto;
+}
+
+.form-group {
+    margin: 1rem 0;
+}
+
+.formLabel, .timeLabel{
+  font-weight: 700;
+}
+
+.text-help{
+  font-size: 12px;
+}
+
+.timeLabel {
+  margin-top: 22px;
+}
+
+.timeField {
+  max-width: 150px;
+}
+
+.smallIcon{
+  margin: 0 5px;
+  color: #0275d8;
+}
+
+.smallIcon.formWrapper{
+  color:#fff;
+}
+
+.smallIcon.trash {
+  color: #a94442;
+  cursor: pointer;
+}
+
+.singleTaskIndication{
+  display: flex;
+  justify-content: space-around;
+  padding: 3px;
+  font-size: 11px;
+}
+
+.singleTaskIndication:hover {
+    opacity: 0.8;
+}
+
+.list-group-item{
+  padding: .5rem 0.5rem;
+}
+
+.taskTitle{
+  flex: 2;
+  margin-left: 6px;
+}
+
+.taskTime{
+  flex: 1;
+}
+
+.singleTaskIndication:nth-child(odd){
+  background-color: #b4bbff;
+}
+
+.singleTaskIndication:nth-child(even){
+  background-color: #b37ea8;
+}
+
+.container{
+  margin-top: 18px;
+  max-width: 90%;
+}
+
+.taskLink{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mobileDailyTasks{
+  display: none;
+}
+
+.newTaskButton{
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: #5bc0de;
+  color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 10px 14px 21px -12px rgba(158,152,158,1);
+}
+
+.newTaskButton:hover {
+  opacity: 0.8;
+}
+
+.taskViewElement {
+  width: 90%;
+}
+
+
+@media (max-width: 768px){
+  .calendar .body .cell {
+    min-height: 5em;
+  }
+
+  .header {
+    margin: 21px 0 17px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 667px)  { 
+
+  .inputBox{
+    flex-direction: column;
+  }
+
+  .formLabel, .timeLabel {
+    margin: 0;
+}
+
+ .singleTaskIndication{
+    display: none;
+  }
+
+  li .singleTaskIndication{
+    display: flex;
+    font-size: 13px;
+    background-color: #fff;
+  }
+
+  .singleTaskIndication:nth-child(odd), .singleTaskIndication:nth-child(even){
+    background-color: #fff;
+  }
+  
+
+  .calendar .body .cell {
+    min-height: 2em;
+  }
+
+  .col-end, .col-start {
+    text-align: center;
+  }
+
+  .icon {
+    font-size: 40px;
+    height: 100%;
+  }
+
+  .calendar .body .cell {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .numberContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
+  .mobileDailyTasks{
+    display: flex;
+    flex-direction: column;
+    padding: 19px;
+    background-color: #c1f0ff;
+    margin-bottom: 0;
+  }
+
+  .taskLink{
+    color: #000;
+  }
+
+  .dayWithTasks{
+    background-color: #b4bbff;
+  }
+
+  .taskLink:focus, .taskLink:hover {
+    color: #5bc0de;
+  }
+
+}  
+
+
+@media (max-width: 350px)  { 
+
+  .taskViewTop {
+    flex-direction: column;
+  }
+
+  .taskViewElement {
+    margin: 10px;
+  }
+}
