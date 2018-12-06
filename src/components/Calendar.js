@@ -3,7 +3,7 @@ import dateFns from 'date-fns';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { withRouter } from "react-router";
-import { fetchTasks } from '../actions/TasksActions';
+import { fetchTasks, getTasksByDate } from '../actions/TasksActions';
 import { openModal, closeModal, changeMonth, selectDate, resizeWindow } from '../actions/GeneralActions';
 import Header from './Header';
 import Cells from './Cells';
@@ -14,6 +14,7 @@ import DayNames from './DayNames';
 class Calendar extends Component {
 
     componentDidMount() {
+      this.props.closeModal();  
       this.props.fetchTasks();
       window.addEventListener('resize', this.handleWindowSizeChange);
     }
@@ -26,31 +27,10 @@ class Calendar extends Component {
       this.props.resizeWindow(window.innerWidth);
     };
 
-    getTasksByDate = (tasks) => {
-      let tasksByDate = {};
-      for(let taskId in tasks) {
-        let task = tasks[ taskId ];
-        task.id = taskId;
-        console.log(task.date)
-        if (tasksByDate[ task.date ] instanceof Array) {
-          tasksByDate[ task.date ].push(task);
-          tasksByDate[ task.date ].sort(function(a, b){
-            if (a.startTime > b.startTime) {
-              return 1;
-            }
-            return -1;
-          })
 
-        } else {
-          tasksByDate[ task.date ] = [ task ];
-        }
-      }
-      return tasksByDate;
-    }
 
     onDateClick = (e, day) => {
       if(e.currentTarget.className.indexOf('mobileView') === -1) {
-        //this.props.openModal();
         this.props.history.push(`/${day}`);
       }
       this.props.selectDate(day);
@@ -65,16 +45,13 @@ class Calendar extends Component {
     };
 
     handleModalClose = () => {
-      console.log('handleModalClose')
-      console.log(this.props.history)
-      //this.props.closeModal();
+      this.props.closeModal();
       this.props.history.push('/');
       
     }
 
     render() {
-      console.log('render calendar')
-      const { tasks } = this.props.tasks;
+      const { tasksByDate } = this.props.tasks;
       const { showModal, currentMonth, selectedDate, windowWidth, openModal } = this.props;
       const isMobile = windowWidth < 668;
       const todayFormat = "YYYY-MM-D";
@@ -95,7 +72,7 @@ class Calendar extends Component {
             dayNameFormat={dayNameFormat} 
           />
           <Cells 
-            tasksByDate={this.getTasksByDate(tasks)} 
+            tasksByDate={tasksByDate} 
             onDateClick={this.onDateClick} 
             isMobile={isMobile} 
             todayFormat={todayFormat}
@@ -108,7 +85,7 @@ class Calendar extends Component {
               todayFormatted={todayFormatted}
               todayFormattedForDisplay={todayFormattedForMobileDisplay}
               onClickNewTask={openModal}
-              tasksByDate={this.getTasksByDate(tasks)}
+              tasksByDate={tasksByDate}
               {...this.props}
             />
             :
@@ -128,6 +105,7 @@ class Calendar extends Component {
 const mapStateToProps = (state) => {
   return {
     tasks: state.tasks,
+    tasksByDate: state.tasks.tasksByDate,
     showModal: state.general.showModal,
     currentMonth: state.general.currentMonth,
     selectedDate: state.general.selectedDate,

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, reset } from 'redux-form';
 import { FormControl, Button } from 'react-bootstrap';
-import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import dateFns from 'date-fns';
 import { Link } from 'react-router-dom';
-import { createTask, updateTask, setDefaults , fetchTasks} from '../actions/TasksActions';
+import { createTask, updateTask, setDefaults} from '../actions/TasksActions';
 import { closeModal } from '../actions/GeneralActions';
 
 
@@ -42,7 +41,6 @@ class TaskForm extends Component {
         dispatch(createTask({task: values}));
         dispatch(reset('taskForm'));
         dispatch(closeModal());
-        // this.props.history.push('/');
     }
 
     updateTask = (id, values, dispatch) => {
@@ -79,8 +77,9 @@ class TaskForm extends Component {
     }
 
     render(){
-        const { handleSubmit, closeModal } = this.props;
-     
+        const { handleSubmit, closeModal, windowWidth } = this.props;
+        const isMobile = windowWidth < 668;  
+
         return (
                 <form onSubmit={ handleSubmit(this.onSubmit) } className="taskForm">
                     <span className="formLabel">What do you want to do?</span>
@@ -116,7 +115,11 @@ class TaskForm extends Component {
 
                     <div className="newTaskFooter">
                         <Button type="submit" className="btn btn-primary create">Save</Button>
-                        <Link to="/" onClick={closeModal} className="btn btn-secondary">Cancel</Link>
+                        { isMobile ?
+                            <Link to="/" onClick={closeModal} className="btn btn-secondary">Cancel</Link>
+                            :
+                            <Button onClick={closeModal} className="btn btn-secondary">Cancel</Button>
+                        } 
                     </div>
                 </form>
         )
@@ -125,7 +128,7 @@ class TaskForm extends Component {
 
 const mapStateToProps = (state) => {
     const { id, eventText, startTime, endTime } = state.form;
-    return { id, eventText, startTime, endTime };
+    return { id, eventText, startTime, endTime, windowWidth: state.general.windowWidth };
 };
 
 

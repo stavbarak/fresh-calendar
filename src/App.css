@@ -327,10 +327,23 @@ input[type=date].form-control, input[type=time].form-control, input[type=datetim
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(24, 24, 24, 0.082);
-  padding: 10px;
-  /* width: 50px;
-  height: 50px; */
+  padding: 22px;
   box-shadow: 10px 14px 21px -12px rgba(158,152,158,1);
+}
+
+.singleDayFooter {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.singleDayContainer .singleTaskIndication {
+  padding: 10px 5px; 
+}
+
+.dayTitle {
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 

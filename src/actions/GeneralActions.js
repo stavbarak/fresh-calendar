@@ -14,7 +14,6 @@ export function openModal() {
 }
 
 export function closeModal() {
-    console.log('closeModal action')
     return {
         type: CLOSE_MODAL
     }

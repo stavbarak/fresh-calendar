@@ -18,9 +18,9 @@ library.add({ faEdit, faTrash });
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <BrowserRouter>
-            <Switch>
-                <Route path="/:date" component={ DayView } />
+            <Switch>                
                 <Route path="/tasks/:id" component={ TaskView } />
+                <Route path="/:date" component={ DayView } />
                 <Route path="/" component={ App } />
             </Switch>
         </BrowserRouter>  

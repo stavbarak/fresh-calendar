@@ -9,7 +9,6 @@ import TaskForm from './TaskForm';
 class TaskView extends Component {
 
     componentDidMount() {   
-      console.log('task view mount')  
       const {id} = this.props.match.params;
       this.props.fetchTask(id);
       this.props.closeModal();      

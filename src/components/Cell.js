@@ -5,10 +5,8 @@ import DailyTasks from './DailyTasks';
 const Cell = ({
   day,
   currentDay,
-  currentMonth,
   selectedDate,
   onDateClick,
-  cloneDay,
   formattedDayCellDisplay,
   formattedDayOfTasks,
   monthStart,
@@ -28,7 +26,7 @@ const Cell = ({
         if (isToday) classes += " today";
         if (isSelected) classes += " selected";
         if (todaysTasks.length > 0) classes += " dayWithTasks"       
-    } //dateFns.parse(cloneDay)
+    } 
     return (
         <div className={classes} key={day} onClick={(e) => onDateClick(e, formattedDayOfTasks)} >
             <div className="numberContainer">

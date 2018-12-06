@@ -11,7 +11,6 @@ const Cells = ({
     isMobile, 
     todayFormat 
 }) => {
-
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
     const startDate = dateFns.startOfWeek(monthStart);
@@ -38,7 +37,6 @@ const Cells = ({
                   console.log('todaysTasks of ' + formattedDayOfTasks+ ' is ' + todaysTasks)
               }
           }
-          const cloneDay = day;
           days.push(
               <Cell
                   key = { i }
@@ -46,7 +44,6 @@ const Cells = ({
                   todaysTasks = { todaysTasks }
                   currentDay = { currentDay }
                   monthStart = { monthStart }
-                  cloneDay = { cloneDay }
                   selectedDate = { selectedDate }
                   formattedDayOfTasks = { formattedDayOfTasks }
                   formattedDayCellDisplay = { formattedDayCellDisplay }

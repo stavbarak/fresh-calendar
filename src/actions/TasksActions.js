@@ -16,17 +16,12 @@ import {
     TASK_FETCHED,
     TASK_DELETED,
     TASK_UPDATED,
-    FETCH_TASKS_BY_DATE
+    GET_TASKS_BY_DATE,
+    FETCH_TASKS_BY_DATE,
+    TASKS_BY_DATE_FETCHED
 } from './types';
 
 const form = "taskForm";
-
-  export function fetchTasksByDate(date){
-    return {
-      type: FETCH_TASKS_BY_DATE,
-      date
-    }
-  }
 
   export function taskFetched(taskItem) {
     return {
@@ -36,7 +31,6 @@ const form = "taskForm";
   }
 
   function tasksFetched(tasks) {
-    //console.log('tasksFetched action')
     return {
       type: TASKS_FETCHED,
       tasks
@@ -49,6 +43,40 @@ const form = "taskForm";
       id,
       values
     }
+  }
+
+  function getTasksByDate(tasks){
+    return {
+      type: GET_TASKS_BY_DATE,
+      tasks
+    }
+  }
+
+  export function taskByDateFetched(date){
+    console.log('taskByDateFetched action', date)
+    return {
+      type: TASKS_BY_DATE_FETCHED,
+      date
+    }
+  }
+
+   export function fetchTasksByDate(date) {
+     console.log(date)
+     return function (dispatch) {
+      dispatch(taskByDateFetched(date))
+     }
+    // return function (dispatch) {
+    //   fetchTasksFromServer()
+    //   // .then((tasks) => {
+    //   //   console.log('tasks', tasks)
+    //   //   dispatch(tasksFetched(tasks))
+    //   //  //dispatch(taskByDateFetched(date))
+    //   // })
+    //   .then((date) => {
+    //     console.log('date', date)
+    //     dispatch(taskByDateFetched(date))
+    //   })
+    // }
   }
 
 export function updateTask(id, values) {
@@ -94,6 +122,9 @@ export function updateTask(id, values) {
       fetchTasksFromServer().then((tasks) => {
         dispatch(tasksFetched(tasks))
       })
+      .then((tasks) => {
+        dispatch(getTasksByDate(tasks))
+      })
     }
   }
 
@@ -120,3 +151,26 @@ export function updateTask(id, values) {
         .then(dispatch(fetchTasks()));
     }
   }
+
+
+  // export function getTasksByDate(tasks) {
+  //   let tasksByDate = {};
+  //   for(let taskId in tasks) {
+  //     let task = tasks[ taskId ];
+  //     task.id = taskId;
+  //     console.log(task.date)
+  //     if (tasksByDate[ task.date ] instanceof Array) {
+  //       tasksByDate[ task.date ].push(task);
+  //       tasksByDate[ task.date ].sort(function(a, b){
+  //         if (a.startTime > b.startTime) {
+  //           return 1;
+  //         }
+  //         return -1;
+  //       })
+
+  //     } else {
+  //       tasksByDate[ task.date ] = [ task ];
+  //     }
+  //   }
+  //   return tasksByDate;
+  // }
