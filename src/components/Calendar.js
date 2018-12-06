@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import dateFns from 'date-fns';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import { withRouter } from "react-router";
 import { fetchTasks } from '../actions/TasksActions';
 import { openModal, closeModal, changeMonth, selectDate, resizeWindow } from '../actions/GeneralActions';
 import Header from './Header';
@@ -30,6 +31,7 @@ class Calendar extends Component {
       for(let taskId in tasks) {
         let task = tasks[ taskId ];
         task.id = taskId;
+        console.log(task.date)
         if (tasksByDate[ task.date ] instanceof Array) {
           tasksByDate[ task.date ].push(task);
           tasksByDate[ task.date ].sort(function(a, b){
@@ -48,7 +50,8 @@ class Calendar extends Component {
 
     onDateClick = (e, day) => {
       if(e.currentTarget.className.indexOf('mobileView') === -1) {
-        this.props.openModal();
+        //this.props.openModal();
+        this.props.history.push(`/${day}`);
       }
       this.props.selectDate(day);
     };
@@ -62,11 +65,15 @@ class Calendar extends Component {
     };
 
     handleModalClose = () => {
-      this.props.closeModal();
+      console.log('handleModalClose')
+      console.log(this.props.history)
+      //this.props.closeModal();
       this.props.history.push('/');
+      
     }
 
     render() {
+      console.log('render calendar')
       const { tasks } = this.props.tasks;
       const { showModal, currentMonth, selectedDate, windowWidth, openModal } = this.props;
       const isMobile = windowWidth < 668;
@@ -92,6 +99,7 @@ class Calendar extends Component {
             onDateClick={this.onDateClick} 
             isMobile={isMobile} 
             todayFormat={todayFormat}
+            todayFormatted={todayFormatted}
             {...this.props} 
            />
 
@@ -136,4 +144,4 @@ export default connect(mapStateToProps, {
   changeMonth,
   selectDate,
   resizeWindow
-}) (Calendar);
+}) (withRouter(Calendar));

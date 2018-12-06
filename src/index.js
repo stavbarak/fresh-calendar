@@ -9,6 +9,7 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import './index.css';
 import App from './App';
 import TaskView from './components/TaskView';
+import DayView from './components/DayView';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
@@ -18,6 +19,7 @@ ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <BrowserRouter>
             <Switch>
+                <Route path="/:date" component={ DayView } />
                 <Route path="/tasks/:id" component={ TaskView } />
                 <Route path="/" component={ App } />
             </Switch>

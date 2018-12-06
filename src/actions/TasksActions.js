@@ -15,10 +15,18 @@ import {
     TASK_CREATED,
     TASK_FETCHED,
     TASK_DELETED,
-    TASK_UPDATED
+    TASK_UPDATED,
+    FETCH_TASKS_BY_DATE
 } from './types';
 
 const form = "taskForm";
+
+  export function fetchTasksByDate(date){
+    return {
+      type: FETCH_TASKS_BY_DATE,
+      date
+    }
+  }
 
   export function taskFetched(taskItem) {
     return {
@@ -28,6 +36,7 @@ const form = "taskForm";
   }
 
   function tasksFetched(tasks) {
+    //console.log('tasksFetched action')
     return {
       type: TASKS_FETCHED,
       tasks
@@ -80,6 +89,7 @@ export function updateTask(id, values) {
   }
 
   export function fetchTasks() {
+    console.log('fetch tasks action')
     return function (dispatch) {
       fetchTasksFromServer().then((tasks) => {
         dispatch(tasksFetched(tasks))
@@ -87,12 +97,13 @@ export function updateTask(id, values) {
     }
   }
 
-  export function taskCreated(tasks) {
-      return {
-          type: TASK_CREATED,
-          tasks
-      }
-  }
+  // export function taskCreated(tasks) {
+  //     console.log('taskCreated');
+  //     return {
+  //         type: TASK_CREATED,
+  //         tasks
+  //     }
+  // }
 
   export function taskDeleted(id){
       return {
@@ -102,6 +113,8 @@ export function updateTask(id, values) {
   }
 
   export function createTask({task}) {
+    console.log('createTask')
+    console.log(task)
     return function (dispatch) {
       createTaskInFirebase(task)
         .then(dispatch(fetchTasks()));

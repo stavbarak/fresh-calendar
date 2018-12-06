@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, reset } from 'redux-form';
 import { FormControl, Button } from 'react-bootstrap';
+import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import dateFns from 'date-fns';
 import { Link } from 'react-router-dom';
-import { createTask, updateTask, setDefaults } from '../actions/TasksActions';
+import { createTask, updateTask, setDefaults , fetchTasks} from '../actions/TasksActions';
 import { closeModal } from '../actions/GeneralActions';
 
 
@@ -37,10 +38,11 @@ class TaskForm extends Component {
         setDefaults(defaultTaskDetails); 
     }
 
-    saveTask = (values, dispatch, today) => {
+    saveTask = (values, dispatch) => {
         dispatch(createTask({task: values}));
         dispatch(reset('taskForm'));
         dispatch(closeModal());
+        // this.props.history.push('/');
     }
 
     updateTask = (id, values, dispatch) => {

@@ -10,6 +10,7 @@ const Cell = ({
   onDateClick,
   cloneDay,
   formattedDayCellDisplay,
+  formattedDayOfTasks,
   monthStart,
   todaysTasks,
   isMobile
@@ -27,9 +28,9 @@ const Cell = ({
         if (isToday) classes += " today";
         if (isSelected) classes += " selected";
         if (todaysTasks.length > 0) classes += " dayWithTasks"       
-    }
+    } //dateFns.parse(cloneDay)
     return (
-        <div className={classes} key={day} onClick={(e) => onDateClick(e, dateFns.parse(cloneDay))} >
+        <div className={classes} key={day} onClick={(e) => onDateClick(e, formattedDayOfTasks)} >
             <div className="numberContainer">
                 <div className="number">{formattedDayCellDisplay}</div>
             </div>

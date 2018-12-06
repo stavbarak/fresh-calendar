@@ -8,7 +8,6 @@ const Cells = ({
     currentMonth, 
     selectedDate, 
     onDateClick, 
-    tasks, 
     isMobile, 
     todayFormat 
 }) => {
@@ -36,6 +35,7 @@ const Cells = ({
                   todaysTasks = tasksByDate[formattedDayOfTasks];
               } else {
                   todaysTasks.concat(tasksByDate[formattedDayOfTasks]);
+                  console.log('todaysTasks of ' + formattedDayOfTasks+ ' is ' + todaysTasks)
               }
           }
           const cloneDay = day;
@@ -48,6 +48,7 @@ const Cells = ({
                   monthStart = { monthStart }
                   cloneDay = { cloneDay }
                   selectedDate = { selectedDate }
+                  formattedDayOfTasks = { formattedDayOfTasks }
                   formattedDayCellDisplay = { formattedDayCellDisplay }
                   onDateClick = { onDateClick }
                   isMobile = { isMobile }                
