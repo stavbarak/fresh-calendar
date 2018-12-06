@@ -53,7 +53,6 @@ const form = "taskForm";
   }
 
   export function taskByDateFetched(date){
-    console.log('taskByDateFetched action', date)
     return {
       type: TASKS_BY_DATE_FETCHED,
       date
@@ -61,22 +60,9 @@ const form = "taskForm";
   }
 
    export function fetchTasksByDate(date) {
-     console.log(date)
      return function (dispatch) {
       dispatch(taskByDateFetched(date))
      }
-    // return function (dispatch) {
-    //   fetchTasksFromServer()
-    //   // .then((tasks) => {
-    //   //   console.log('tasks', tasks)
-    //   //   dispatch(tasksFetched(tasks))
-    //   //  //dispatch(taskByDateFetched(date))
-    //   // })
-    //   .then((date) => {
-    //     console.log('date', date)
-    //     dispatch(taskByDateFetched(date))
-    //   })
-    // }
   }
 
 export function updateTask(id, values) {
@@ -117,7 +103,6 @@ export function updateTask(id, values) {
   }
 
   export function fetchTasks() {
-    console.log('fetch tasks action')
     return function (dispatch) {
       fetchTasksFromServer().then((tasks) => {
         dispatch(tasksFetched(tasks))
@@ -128,14 +113,6 @@ export function updateTask(id, values) {
     }
   }
 
-  // export function taskCreated(tasks) {
-  //     console.log('taskCreated');
-  //     return {
-  //         type: TASK_CREATED,
-  //         tasks
-  //     }
-  // }
-
   export function taskDeleted(id){
       return {
           type: TASK_DELETED,
@@ -144,33 +121,8 @@ export function updateTask(id, values) {
   }
 
   export function createTask({task}) {
-    console.log('createTask')
-    console.log(task)
     return function (dispatch) {
       createTaskInFirebase(task)
         .then(dispatch(fetchTasks()));
     }
   }
-
-
-  // export function getTasksByDate(tasks) {
-  //   let tasksByDate = {};
-  //   for(let taskId in tasks) {
-  //     let task = tasks[ taskId ];
-  //     task.id = taskId;
-  //     console.log(task.date)
-  //     if (tasksByDate[ task.date ] instanceof Array) {
-  //       tasksByDate[ task.date ].push(task);
-  //       tasksByDate[ task.date ].sort(function(a, b){
-  //         if (a.startTime > b.startTime) {
-  //           return 1;
-  //         }
-  //         return -1;
-  //       })
-
-  //     } else {
-  //       tasksByDate[ task.date ] = [ task ];
-  //     }
-  //   }
-  //   return tasksByDate;
-  // }

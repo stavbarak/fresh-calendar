@@ -11,26 +11,22 @@ import DailyTasks from './DailyTasks';
 
 class DayView extends Component {
     componentDidMount() {   
-        console.log('day view mount')  
         const {date} = this.props.match.params;
         this.props.fetchTasks();
         this.props.fetchTasksByDate(date);
-        //this.props.getTasksByDate();
       }
 
     render() {
         const {date} = this.props.match.params;
-        const { todaysTasks, tasksByDate } = this.props.tasks;
+        const { tasksByDate } = this.props.tasks;
         const { openModal, selectedDate, showModal } = this.props;
-
-        console.log('tasksByDate', tasksByDate)
         
         const titleFormat = "D MMMM YYYY";
         const titleFormatted = dateFns.format(date, titleFormat);
         return (
             <div className="singleDayContainer">
                 <h3 className="dayTitle">{`${titleFormatted}`}</h3>
-                 <DailyTasks day={date} todaysTasks={todaysTasks}></DailyTasks>
+                 <DailyTasks day={date} todaysTasks={tasksByDate[date]}></DailyTasks>
                  <div className="singleDayFooter">
                     <Link to="/" onClick={closeModal} className="btn btn-secondary">Cancel</Link>
                     <Button onClick={openModal} className="btn btn-success create"> New Task </Button>
