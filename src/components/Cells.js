@@ -34,7 +34,6 @@ const Cells = ({
                   todaysTasks = tasksByDate[formattedDayOfTasks];
               } else {
                   todaysTasks.concat(tasksByDate[formattedDayOfTasks]);
-                  console.log('todaysTasks of ' + formattedDayOfTasks+ ' is ' + todaysTasks)
               }
           }
           days.push(

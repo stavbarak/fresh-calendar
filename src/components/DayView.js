@@ -4,7 +4,6 @@ import dateFns from 'date-fns';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import TaskModal from './TaskModal';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fetchTasks, deleteTask, fetchTasksByDate } from '../actions/TasksActions';
 import { closeModal , openModal} from '../actions/GeneralActions';
 import DailyTasks from './DailyTasks';
@@ -20,7 +19,6 @@ class DayView extends Component {
         const {date} = this.props.match.params;
         const { tasksByDate } = this.props.tasks;
         const { openModal, selectedDate, showModal } = this.props;
-        
         const titleFormat = "D MMMM YYYY";
         const titleFormatted = dateFns.format(date, titleFormat);
         return (
@@ -28,7 +26,7 @@ class DayView extends Component {
                 <h3 className="dayTitle">{`${titleFormatted}`}</h3>
                  <DailyTasks day={date} todaysTasks={tasksByDate[date]}></DailyTasks>
                  <div className="singleDayFooter">
-                    <Link to="/" onClick={closeModal} className="btn btn-secondary">Cancel</Link>
+                    <Link to="/" onClick={closeModal} className="btn btn-secondary">Close</Link>
                     <Button onClick={openModal} className="btn btn-success create"> New Task </Button>
                     <TaskModal
                         closeModal={this.handleModalClose}

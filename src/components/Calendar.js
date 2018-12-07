@@ -54,7 +54,7 @@ class Calendar extends Component {
       const { tasksByDate } = this.props.tasks;
       const { showModal, currentMonth, selectedDate, windowWidth, openModal } = this.props;
       const isMobile = windowWidth < 668;
-      const todayFormat = "YYYY-MM-D";
+      const todayFormat = "YYYY-MM-DD";
       const mobileDisplayFormat = "D MMMM YYYY";
       const dayNameFormat = "ddd";
       const todayFormattedForMobileDisplay = dateFns.format(selectedDate, mobileDisplayFormat);
@@ -76,7 +76,6 @@ class Calendar extends Component {
             onDateClick={this.onDateClick} 
             isMobile={isMobile} 
             todayFormat={todayFormat}
-            todayFormatted={todayFormatted}
             {...this.props} 
            />
 

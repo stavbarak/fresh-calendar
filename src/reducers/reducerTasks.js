@@ -14,9 +14,10 @@ const initialState = {
 export default function (state= initialState , action) {
     switch (action.type){
         case TASK_FETCHED:
+
             return {
               ...state,
-              displayedTask: action.taskItem
+              displayedTask: action.task
             }
         case GET_TASKS_BY_DATE:
             const {tasks} = state;
@@ -56,8 +57,8 @@ export default function (state= initialState , action) {
                 ...state, 
                 tasks: Object.assign({}, state.tasks, { id: action.values }) 
             }
-        case TASK_CREATED:
-            return { ...state, tasks: [...action.tasks] }
+        case TASK_CREATED:        
+            return { ...state, tasks: Object.assign({}, state.tasks, {id: action.task.id})}
         case TASKS_BY_DATE_FETCHED:
             return {
                 ...state,

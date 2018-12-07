@@ -17,16 +17,22 @@ import {
     TASK_DELETED,
     TASK_UPDATED,
     GET_TASKS_BY_DATE,
-    FETCH_TASKS_BY_DATE,
     TASKS_BY_DATE_FETCHED
 } from './types';
 
 const form = "taskForm";
 
-  export function taskFetched(taskItem) {
+  export function taskFetched(task) {
     return {
       type: TASK_FETCHED,
-      taskItem
+      task
+    }
+  }
+
+  export function taskCreated(task) {
+    return {
+      type: TASK_CREATED,
+      task
     }
   }
 
@@ -123,6 +129,8 @@ export function updateTask(id, values) {
   export function createTask({task}) {
     return function (dispatch) {
       createTaskInFirebase(task)
-        .then(dispatch(fetchTasks()));
+        .then(dispatch(taskCreated(task)))
+        .then(dispatch(fetchTasks()))
+        
     }
   }
