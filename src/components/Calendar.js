@@ -3,7 +3,7 @@ import dateFns from 'date-fns';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { withRouter } from "react-router";
-import { fetchTasks, getTasksByDate } from '../actions/TasksActions';
+import { fetchTasks } from '../actions/TasksActions';
 import { openModal, closeModal, changeMonth, selectDate, resizeWindow } from '../actions/GeneralActions';
 import Header from './Header';
 import Cells from './Cells';
@@ -89,7 +89,10 @@ class Calendar extends Component {
               {...this.props}
             />
             :
-            <Button className="newTaskButton" onClick={openModal}>+</Button>
+            <div className="stickyContainer">
+              <Button className="newTaskButton" onClick={openModal}>+</Button>
+            </div>
+            
           }
           <TaskModal
             closeModal={this.handleModalClose}
