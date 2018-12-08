@@ -8,7 +8,7 @@ const initialState = {
     currentMonth: new Date(),
     selectedDate: new Date(),
     showModal: false,
-    windowWidth: window.innerWidth,
+    windowWidth: window.innerWidth
 }
 
 export default function (state = initialState, action) {

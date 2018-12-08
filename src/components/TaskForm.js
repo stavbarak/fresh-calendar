@@ -46,7 +46,8 @@ class TaskForm extends Component {
     updateTask = (id, values, dispatch) => {
         const newTaskDetails = { ...values } 
         dispatch(updateTask(id, newTaskDetails));
-        this.props.history.push('/');
+        //this.props.history.push('/');
+        this.props.getBack();
     }
 
     onSubmit = (values, dispatch) => {        
@@ -118,7 +119,7 @@ class TaskForm extends Component {
                         { isMobile ?
                             <Link to="/" onClick={closeModal} className="btn btn-secondary">Cancel</Link>
                             :
-                            <Button onClick={closeModal} className="btn btn-secondary">Cancel</Button>
+                            <Button onClick={this.props.getBack} className="btn btn-secondary">Cancel</Button>
                         } 
                     </div>
                 </form>

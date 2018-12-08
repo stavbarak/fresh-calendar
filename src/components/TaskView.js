@@ -17,7 +17,14 @@ class TaskView extends Component {
     onDelete = () => {
         const {id} = this.props.match.params;
         this.props.deleteTask(id);
-        this.props.history.push('/');
+        this.getBack();
+    }
+
+    getBack = () => {
+        if (this.props.history.location.pathname.indexOf('/tasks') !== -1){
+            this.props.history.goBack();
+        } 
+        this.props.closeModal();
     }
 
     render () {        
@@ -38,7 +45,7 @@ class TaskView extends Component {
                         </span>
                     </Button>
                 </div>
-                <TaskForm taskId={id} history={this.props.history}/>
+                <TaskForm taskId={id} history={this.props.history} getBack={this.getBack} />
             </div>
 
         );

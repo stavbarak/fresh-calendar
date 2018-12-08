@@ -27,7 +27,12 @@ class Calendar extends Component {
       this.props.resizeWindow(window.innerWidth);
     };
 
-
+    getBack = () => {
+      if (this.props.history.location.pathname.indexOf('/tasks') !== -1){
+          this.props.history.goBack();
+      } 
+      this.props.closeModal();
+    }
 
     onDateClick = (e, day) => {
       if(e.currentTarget.className.indexOf('mobileView') === -1) {
@@ -97,6 +102,7 @@ class Calendar extends Component {
             closeModal={this.handleModalClose}
             showModal={showModal}
             selectedDate={selectedDate}
+            getBack={this.getBack}
             {...this.props}
             />
         </div>
@@ -112,7 +118,7 @@ const mapStateToProps = (state) => {
     currentMonth: state.general.currentMonth,
     selectedDate: state.general.selectedDate,
     currentDay: state.general.currentDay,
-    windowWidth: state.general.windowWidth
+    windowWidth: state.general.windowWidth,
   }
 };
 
