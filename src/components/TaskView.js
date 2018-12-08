@@ -45,7 +45,7 @@ class TaskView extends Component {
                         </span>
                     </Button>
                 </div>
-                <TaskForm taskId={id} history={this.props.history} getBack={this.getBack} />
+                <TaskForm taskId={id} getBack={this.getBack} />
             </div>
 
         );
