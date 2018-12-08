@@ -353,6 +353,16 @@ input[type=date].form-control, input[type=time].form-control, input[type=datetim
   margin-bottom: 20px;
 }
 
+.hourRow {
+  display: flex;
+  border: 1px solid rgba(24, 24, 24, 0.082);
+}
+
+.hour {
+  border-right: 1px solid rgba(24, 24, 24, 0.082);
+  padding: 10px;
+}
+
 
 @media (max-width: 768px){
   .calendar .body .cell {
